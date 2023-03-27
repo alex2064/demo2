@@ -17,6 +17,10 @@ fun main(args: Array<String>) {
 	runApplication<ChatKotlinApplication>(*args)
 }
 
+
+/**
+ * 초기 DB 셋팅
+ */
 @Configuration
 class Config {
 

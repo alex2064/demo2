@@ -16,6 +16,22 @@ repositories {
 	mavenCentral()
 }
 
+/**
+ * implementation("org.springframework.boot:spring-boot-starter-webflux")
+ * 		- spring webflux(비동기, non block)
+ *
+ * implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+ * 		- spring webflux를 DB에 연결하기 위해 r2dbc 사용
+ *
+ * runtimeOnly("org.mariadb:r2dbc-mariadb:1.1.3")
+ * 		- r2dbc mariadb 사용
+ * 		- https://mariadb.com/resources/blog/unblock-your-applications-with-r2dbc-spring-data-and-mariadb/
+ * 	
+ * implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+ * implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
+ * implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+ * 		- 코루틴 사용하기 위해 추가
+ */
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -23,7 +39,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 	runtimeOnly("org.mariadb:r2dbc-mariadb:1.1.3")
-	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
 	implementation("org.springframework.boot:spring-boot-starter-rsocket")
 

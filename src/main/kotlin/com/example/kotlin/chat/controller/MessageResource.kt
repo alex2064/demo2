@@ -10,9 +10,15 @@ import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
+/**
+ * @MessageMapping
+ *      - client에서 send 요청을 할 수 있는 경로
+ */
 @Controller
 @MessageMapping("api.v1.messages")
-class MessageResource(val messageService: MessageService) {
+class MessageResource(
+    val messageService: MessageService
+) {
 
     @MessageMapping("stream")
     suspend fun receive(@Payload inboundMessages: Flow<MessageVM>) =
