@@ -18,10 +18,12 @@ repositories {
 
 /**
  * implementation("org.springframework.boot:spring-boot-starter-webflux")
- * 		- spring webflux(비동기, non block)
+ * 		- spring webflux(비동기, non-block)
  *
  * implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
  * 		- spring webflux를 DB에 연결하기 위해 r2dbc 사용
+ * 		- 기존 JDBC는 Blocking 방식으로 동작하는 문제가 있어
+ * 			Reactive Relational Database Connectivity(R2DBC)를 이용해야 완전한 비동기, NON-Blocking 어플리케이션 개발 가능
  *
  * runtimeOnly("org.mariadb:r2dbc-mariadb:1.1.3")
  * 		- r2dbc mariadb 사용

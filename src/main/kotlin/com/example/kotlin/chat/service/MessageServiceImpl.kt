@@ -22,8 +22,8 @@ class MessageServiceImpl(val messageRepository: MessageRepository) : MessageServ
     override fun stream(): Flow<MessageVM> = sender
 
     override suspend fun post(messages: Flow<MessageVM>) =
-        messages.onEach { sender.emit(it.asRendered()) }
-            .map {  it.asDomainObject() }
-            .let { messageRepository.saveAll(it) }
+        messages.onEach { m -> sender.emit(m.asRendered()) }
+            .map { m -> m.asDomainObject() }
+            .let { m -> messageRepository.saveAll(m) }
             .collect()
 }

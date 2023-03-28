@@ -11,6 +11,12 @@ import org.intellij.markdown.html.HtmlGenerator
 import org.intellij.markdown.parser.MarkdownParser
 import java.net.URL
 
+/**
+ * 확장함수에서는 this로 해당 객체를 부르고 this.은 생략 가능
+ *
+ * MessageVM -> user -> name 접근은 코틀린에서는 this.user.name으로 접근
+ */
+
 fun MessageVM.asDomainObject(contentType: ContentType = ContentType.MARKDOWN): Message =
     Message(content, contentType, sent, user.name, user.avatarImageLink.toString(), id)
 
@@ -29,7 +35,13 @@ fun ContentType.render(content: String): String =
         }
     }
 
-fun Flow<Message>.mapToViewModel(): Flow<MessageVM> = map { m -> m.asViewModel() }
+fun Flow<Message>.mapToViewModel(): Flow<MessageVM> =
+    this.map { m -> m.asViewModel() }
+
+/**
+ * this.copy
+ *      - 객체가 수정이 불가능 할때 copy를 하면서 값을 변경하고 새로 만듦
+ */
 
 fun MessageVM.asRendered(contentType: ContentType = ContentType.MARKDOWN): MessageVM =
     this.copy(content = contentType.render(this.content))

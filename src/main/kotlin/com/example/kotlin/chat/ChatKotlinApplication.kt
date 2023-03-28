@@ -20,18 +20,25 @@ fun main(args: Array<String>) {
 
 /**
  * 초기 DB 셋팅
+ *
+ * ConnectionFactory
+ * 		- r2dbc 연결 팩토리
  */
 @Configuration
 class Config {
 
 	@Bean
 	fun initializer(connectionFactory: ConnectionFactory): ConnectionFactoryInitializer {
+		// 초기화될때 채우고 구성요소가 종료될 때 정리할 DB에 대한 연결 팩토리
 		val initializer = ConnectionFactoryInitializer()
 		initializer.setConnectionFactory(connectionFactory)
 
+		// DB에 기본 셋팅
 		val populator = CompositeDatabasePopulator()
 		populator.addPopulators(ResourceDatabasePopulator(ClassPathResource("./sql/schema.sql")))
+
 		initializer.setDatabasePopulator(populator)
+
 		return initializer
 	}
 }
