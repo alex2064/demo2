@@ -22,6 +22,8 @@ repositories {
  *
  * implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
  * 		- spring webflux를 DB에 연결하기 위해 r2dbc 사용
+ * 		- webMVC-jdbc : 동기-블로킹
+ * 		- webflux-r2dbc : 비동기-논블록킹
  * 		- 기존 JDBC는 Blocking 방식으로 동작하는 문제가 있어
  * 			Reactive Relational Database Connectivity(R2DBC)를 이용해야 완전한 비동기, NON-Blocking 어플리케이션 개발 가능
  *

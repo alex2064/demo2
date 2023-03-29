@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.*
 import org.springframework.stereotype.Service
 
 @Service
-class MessageServiceImpl(val messageRepository: MessageRepository) : MessageService {
+class MessageServiceImpl(
+    val messageRepository: MessageRepository
+) : MessageService {
 
     val sender: MutableSharedFlow<MessageVM> = MutableSharedFlow()
 
