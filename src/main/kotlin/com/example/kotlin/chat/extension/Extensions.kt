@@ -2,8 +2,8 @@ package com.example.kotlin.chat.extension
 
 import com.example.kotlin.chat.entity.ContentType
 import com.example.kotlin.chat.entity.Message
-import com.example.kotlin.chat.dto.MessageVM
-import com.example.kotlin.chat.dto.UserVM
+import com.example.kotlin.chat.dto.MessageDto
+import com.example.kotlin.chat.dto.UserDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
@@ -14,16 +14,16 @@ import java.net.URL
 /**
  * 확장함수에서는 this로 해당 객체를 부르고 this.은 생략 가능
  *
- * MessageVM -> user -> name 접근은 코틀린에서는 this.user.name으로 접근
+ * MessageDto -> user -> name 접근은 코틀린에서는 this.user.name으로 접근
  */
 
-fun MessageVM.asDomainObject(contentType: ContentType = ContentType.MARKDOWN): Message =
+fun MessageDto.asDomainObject(contentType: ContentType = ContentType.MARKDOWN): Message =
     Message(content, contentType, sent, user.name, user.avatarImageLink.toString(), id)
 
-fun Message.asViewModel(): MessageVM =
-    MessageVM(content, UserVM(username, URL(userAvatarImageLink)), sent, id)
+fun Message.asViewModel(): MessageDto =
+    MessageDto(content, UserDto(username, URL(userAvatarImageLink)), sent, id)
 
-fun List<Message>.mapToViewModel(): List<MessageVM> =
+fun List<Message>.mapToViewModel(): List<MessageDto> =
     this.map { m -> m.asViewModel() }
 
 fun ContentType.render(content: String): String =
@@ -35,7 +35,7 @@ fun ContentType.render(content: String): String =
         }
     }
 
-fun Flow<Message>.mapToViewModel(): Flow<MessageVM> =
+fun Flow<Message>.mapToViewModel(): Flow<MessageDto> =
     this.map { m -> m.asViewModel() }
 
 /**
@@ -43,5 +43,5 @@ fun Flow<Message>.mapToViewModel(): Flow<MessageVM> =
  *      - 객체가 수정이 불가능 할때 copy를 하면서 값을 변경하고 새로 만듦
  */
 
-fun MessageVM.asRendered(contentType: ContentType = ContentType.MARKDOWN): MessageVM =
+fun MessageDto.asRendered(contentType: ContentType = ContentType.MARKDOWN): MessageDto =
     this.copy(content = contentType.render(this.content))

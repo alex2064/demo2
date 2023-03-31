@@ -20,6 +20,7 @@ fun main(args: Array<String>) {
 
 /**
  * 초기 DB 셋팅
+ * spring webflux + r2dbc인경우 configuration-bean 등록 필요
  *
  * ConnectionFactory
  * 		- r2dbc 연결 팩토리
