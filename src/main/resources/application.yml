@@ -8,8 +8,8 @@ spring:
     initialization-mode: always
   r2dbc:
     url: r2dbc:mariadb://localhost:3306/study
-    username: study
-    password: study123
+    username: root
+    password: 1234
   rsocket:
     server:
       transport: websocket
